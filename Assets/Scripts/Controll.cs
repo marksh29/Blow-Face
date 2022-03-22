@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using PathCreation.Examples;
 
 public class Controll : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Controll : MonoBehaviour
     }
     void Start()
     {
+        PathPlacer.Instance.Off();
         Set_state("Menu");
     }
   
@@ -39,7 +41,7 @@ public class Controll : MonoBehaviour
     } 
     public void StartLevel()
     {
-        Set_state("Game");
+        Set_state("Game");       
     }
     public void Next_level()
     {

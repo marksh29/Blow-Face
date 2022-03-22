@@ -4,54 +4,65 @@ using UnityEngine;
 
 public class Head : MonoBehaviour
 {
-    [SerializeField] Animator head;
-    
-    float addAngle;
-    float changeAngle;
-
-    [SerializeField] float nideScale, addScale, maxScale;
+    [SerializeField] PlayerControll player;
+    [SerializeField] float emotionTime, addScale;
+    [SerializeField] SkinnedMeshRenderer head;
 
     void Start()
     {
-        nideScale = transform.localScale.x;
-        addAngle = Player.Instance.addAngle;
-        changeAngle = Player.Instance.changeAngle;
+        emotionTime = player.GetComponent<PlayerControll>().emotionTime;
+        addScale = player.GetComponent<PlayerControll>().addScale;
     }
     void Update()
     {
-        if(transform.localScale.x > nideScale)
-        {
-            transform.localScale -= new Vector3(addScale, 0, addScale); 
-            float animSpeed = (((maxScale - transform.localScale.x)/2 ));
-            if (transform.localScale.x < 2.3f)
-                head.speed = animSpeed;
-        }
-        if (transform.localScale.x < nideScale)
-        {
-            transform.localScale += new Vector3(addScale, 0, addScale);
-            float animSpeed = (((maxScale - transform.localScale.x) / 2));
-            if (transform.localScale.x < 2.3f)
-                head.speed = animSpeed;
-        }
+       
     }
     public void OnTriggerEnter(Collider coll)
     {
         if (coll.gameObject.tag == "Boost")
         {
-            Player.Instance.Boost();
+            player.GetComponent<PlayerControll>().Boost();
             coll.gameObject.SetActive(false);
         }
         if (coll.gameObject.tag == "Good")
         {
-            if (transform.localScale.x < maxScale)
-                nideScale += 0.2f;
+            Emotion(coll.gameObject.tag);
             coll.gameObject.SetActive(false);
         }
         if (coll.gameObject.tag == "Bad")
         {
-            if (transform.localScale.x > 1)
-                nideScale -= 0.2f;
+            Emotion(coll.gameObject.tag);
             coll.gameObject.SetActive(false);
         }
-    }   
+    }
+
+    void Emotion(string name)
+    {
+        StopAllCoroutines();
+        head.SetBlendShapeWeight(2, 0);
+        switch (name)
+        {
+            case ("Good"):
+                StartCoroutine(GoodEmotion());
+                break;
+            case ("Bad"):
+                StartCoroutine(BadEmotion());
+                break;
+        }
+    }
+    IEnumerator BadEmotion()
+    {
+        head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) - addScale);
+        head.SetBlendShapeWeight(1, 100);
+        yield return new WaitForSeconds(emotionTime);
+        head.SetBlendShapeWeight(1, 0);
+
+    }
+    IEnumerator GoodEmotion()
+    {
+        head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) + addScale);
+        head.SetBlendShapeWeight(2, 100);
+        yield return new WaitForSeconds(emotionTime);
+        head.SetBlendShapeWeight(2, 0);
+    }
 }
