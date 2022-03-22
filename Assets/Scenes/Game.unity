@@ -3515,7 +3515,7 @@ GameObject:
   - component: {fileID: 1365886020}
   - component: {fileID: 1365886021}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerOld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4863,7 +4863,7 @@ GameObject:
   - component: {fileID: 2035758365}
   - component: {fileID: 2035758364}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4881,16 +4881,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f036c9f97e730447b28797aca25bc3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
-  boostSpeed: 0
-  slowSpeed: 0
+  moveSpeed: 5
+  boostSpeed: 20
+  slowSpeed: 0.5
   boostTime: 0
-  speedRight: 10
-  emotionTime: 0
-  addScale: 0
-  speed: 10
+  speedRight: 20
+  emotionTime: 1
+  addScale: 10
+  speed: 0
   limitXX: 0
-  head: {fileID: 1823950624}
+  head: {fileID: 2102951888}
 --- !u!135 &2035758365
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5404,6 +5404,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 477ee06c6674c6c43a45ede1a1d71637, type: 3}
+--- !u!137 &2102951888 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3887185075125053422, guid: 477ee06c6674c6c43a45ede1a1d71637, type: 3}
+  m_PrefabInstance: {fileID: 2102951887}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2140348168
 GameObject:
   m_ObjectHideFlags: 0
