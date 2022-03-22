@@ -736,14 +736,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269167176}
-  m_LocalRotation: {x: 0.12944308, y: -0.23043676, z: 0.026883293, w: 0.96406466}
-  m_LocalPosition: {x: 7.13, y: 8.25, z: -18.81}
+  m_LocalRotation: {x: 0.09810398, y: 0, z: 0, w: 0.9951762}
+  m_LocalPosition: {x: 0.024276733, y: 5.8199997, z: -19.060644}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1920291834}
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 15.187, y: -26.948, z: -0.464}
+  m_LocalEulerAnglesHint: {x: 11.26, y: 0, z: 0}
 --- !u!1 &291792505
 GameObject:
   m_ObjectHideFlags: 0
@@ -4639,7 +4639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 7.1057234, y: 6.23, z: -13.829355}
+  m_FollowOffset: {x: 0, y: 3.8, z: -14.08}
   m_XDamping: 0
   m_YDamping: 0
   m_ZDamping: 0
@@ -4881,9 +4881,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f036c9f97e730447b28797aca25bc3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  moveSpeed: 0
+  boostSpeed: 0
+  slowSpeed: 0
+  boostTime: 0
   speedRight: 10
-  rotSpeed: 500
+  emotionTime: 0
+  addScale: 0
+  speed: 10
+  limitXX: 0
   head: {fileID: 1823950624}
 --- !u!135 &2035758365
 SphereCollider:
@@ -6744,13 +6750,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3773659483201371059}
-  m_LocalRotation: {x: 0.12944308, y: -0.23043676, z: 0.026883293, w: 0.96406466}
-  m_LocalPosition: {x: 7.13, y: 8.25, z: -18.81}
+  m_LocalRotation: {x: 0.09810398, y: 0, z: 0, w: 0.9951762}
+  m_LocalPosition: {x: 0.024276733, y: 5.8199997, z: -19.060644}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15.43, y: -26.948, z: -0.464}
 --- !u!114 &3773659483201371063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6799,7 +6805,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 0
+  m_UpdateMethod: 2
   m_BlendUpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
