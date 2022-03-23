@@ -41,47 +41,26 @@ public class PlayerControll : MonoBehaviour
 
                 if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f) // swip left
                 {
-                    head.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+                    head.GetComponent<Rigidbody>().velocity = new Vector3(0, head.GetComponent<Rigidbody>().velocity.y, 0);
                     transform.GetChild(0).transform.Translate(-Vector3.right * speedRight * Time.deltaTime);
-                    head.transform.Rotate(Vector3.up * headRightRotate);
+                    //head.transform.Rotate(Vector3.up * headRightRotate);
                 }
                 else if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f) // swip right
                 {
-                    head.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+                    head.GetComponent<Rigidbody>().velocity = new Vector3(0, head.GetComponent<Rigidbody>().velocity.y, 0);
                     transform.GetChild(0).transform.Translate(Vector3.right * speedRight * Time.deltaTime);
-                    head.transform.Rotate(Vector3.up * headRightRotate);
+                    //head.transform.Rotate(Vector3.up * headRightRotate);
                 }                    
                 firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             }            
         }
-    }
-    //public void OnTriggerEnter(Collider coll)
-    //{
-    //    if (coll.gameObject.tag == "Boost")
-    //    {
-    //        Boost();
-    //        coll.gameObject.SetActive(false);
-    //    }
-    //    if (coll.gameObject.tag == "Good")
-    //    {
-    //        Emotion(0);            
-    //        coll.gameObject.SetActive(false);
-    //    }
-    //    if (coll.gameObject.tag == "Bad")
-    //    {
-    //        Emotion(1);
-    //        coll.gameObject.SetActive(false);
-    //    }
-    //}
+    }  
 
     public void Boost()
     {
         path.speed = boostSpeed;
-        //speed = 
         StartCoroutine(SlowSpeed());
-    }
-   
-
+    }  
     IEnumerator SlowSpeed()
     {
         yield return new WaitForSeconds(boostTime);
@@ -91,5 +70,9 @@ public class PlayerControll : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
     }
-    
+    public void Lose()
+    {
+        path.speed = 0;
+        StartCoroutine(Controll.Instance.Lose());
+    }
 }

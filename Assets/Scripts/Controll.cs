@@ -43,6 +43,10 @@ public class Controll : MonoBehaviour
     {
         Set_state("Game");       
     }
+    public void Restart()
+    {
+        SceneManager.LoadScene(Application.loadedLevel);
+    }
     public void Next_level()
     {
         SceneManager.LoadScene(Application.loadedLevel == Application.levelCount -1 ? 0 : (Application.loadedLevel + 1));

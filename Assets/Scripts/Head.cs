@@ -37,6 +37,13 @@ public class Head : MonoBehaviour
             coll.gameObject.SetActive(false);
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            player.Lose();
+        }
+    }
 
     void Emotion(string name)
     {
@@ -57,6 +64,7 @@ public class Head : MonoBehaviour
         head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) + addScale);
         if (head.GetBlendShapeWeight(0) < 0)
             head.SetBlendShapeWeight(0, 0);
+        GetComponent<CapsuleCollider>().radius = 1f - (0.4f / head.GetBlendShapeWeight(0));
         head.SetBlendShapeWeight(2, 100);
         yield return new WaitForSeconds(emotionTime);
         head.SetBlendShapeWeight(2, 0);
@@ -66,6 +74,7 @@ public class Head : MonoBehaviour
         head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) + addScale);
         if (head.GetBlendShapeWeight(0) > 100)
             head.SetBlendShapeWeight(0, 100);
+        GetComponent<CapsuleCollider>().radius = 1f - (0.4f / head.GetBlendShapeWeight(0));
         head.SetBlendShapeWeight(1, 100);
         yield return new WaitForSeconds(emotionTime);
         head.SetBlendShapeWeight(1, 0);
