@@ -11,7 +11,7 @@ public class Head : MonoBehaviour
     void Start()
     {
         emotionTime = player.GetComponent<PlayerControll>().emotionTime;
-        addScale = player.GetComponent<PlayerControll>().addScale;
+        //addScale = player.GetComponent<PlayerControll>().addScale;
     }
     void Update()
     {
@@ -26,11 +26,13 @@ public class Head : MonoBehaviour
         }
         if (coll.gameObject.tag == "Good")
         {
+            addScale = coll.gameObject.GetComponent<AddScale>().addScale;
             Emotion(coll.gameObject.tag);
             coll.gameObject.SetActive(false);
         }
         if (coll.gameObject.tag == "Bad")
         {
+            addScale = coll.gameObject.GetComponent<AddScale>().addScale;
             Emotion(coll.gameObject.tag);
             coll.gameObject.SetActive(false);
         }
@@ -50,19 +52,23 @@ public class Head : MonoBehaviour
                 break;
         }
     }
-    IEnumerator BadEmotion()
-    {
-        head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) - addScale);
-        head.SetBlendShapeWeight(1, 100);
-        yield return new WaitForSeconds(emotionTime);
-        head.SetBlendShapeWeight(1, 0);
-
-    }
     IEnumerator GoodEmotion()
     {
         head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) + addScale);
+        if (head.GetBlendShapeWeight(0) < 0)
+            head.SetBlendShapeWeight(0, 0);
         head.SetBlendShapeWeight(2, 100);
         yield return new WaitForSeconds(emotionTime);
         head.SetBlendShapeWeight(2, 0);
     }
+    IEnumerator BadEmotion()
+    {
+        head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) + addScale);
+        if (head.GetBlendShapeWeight(0) > 100)
+            head.SetBlendShapeWeight(0, 100);
+        head.SetBlendShapeWeight(1, 100);
+        yield return new WaitForSeconds(emotionTime);
+        head.SetBlendShapeWeight(1, 0);
+
+    }    
 }
