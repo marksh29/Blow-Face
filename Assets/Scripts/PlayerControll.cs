@@ -12,8 +12,7 @@ public class PlayerControll : MonoBehaviour
     [Header("--------Game--------")]
     [SerializeField] PathFollower path;
     [SerializeField] float speed; 
-    [SerializeField] float limitXX;
-    [SerializeField] GameObject head;   
+    [SerializeField] GameObject head;
 
     Vector2 firstPressPos;
     Vector2 secondPressPos;
@@ -28,7 +27,8 @@ public class PlayerControll : MonoBehaviour
     {
         if (Controll.Instance._state == "Game")
         {
-            transform.GetChild(0).Rotate(Vector3.right * headForwardRoatete);
+            transform.GetChild(0).Rotate(Vector3.right * headRightRotate);
+
             if (Input.GetMouseButtonDown(0))
             {
                 firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
@@ -41,16 +41,18 @@ public class PlayerControll : MonoBehaviour
 
                 if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f) // swip left
                 {
+                    head.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
                     transform.GetChild(0).transform.Translate(-Vector3.right * speedRight * Time.deltaTime);
-                    head.transform.Rotate(-Vector3.forward * headRightRotate);
+                    head.transform.Rotate(Vector3.up * headRightRotate);
                 }
-                if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f) // swip right
+                else if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f) // swip right
                 {
+                    head.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
                     transform.GetChild(0).transform.Translate(Vector3.right * speedRight * Time.deltaTime);
-                    head.transform.Rotate(Vector3.forward * headRightRotate);
-                }
+                    head.transform.Rotate(Vector3.up * headRightRotate);
+                }                    
                 firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-            }
+            }            
         }
     }
     //public void OnTriggerEnter(Collider coll)
