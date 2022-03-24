@@ -1,44 +1,9 @@
 fileFormatVersion: 2
-guid: 477ee06c6674c6c43a45ede1a1d71637
+guid: 44d891bdc7925224081abfd7b24e0a7e
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Brows
-    second: {fileID: 2100000, guid: e2ee0204a08c0e540ac3966ad267c04c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Eye_L
-    second: {fileID: 2100000, guid: 1ad2eb5b3949f97408b871ecec972cb7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Eye_R
-    second: {fileID: 2100000, guid: 06d621ab11ac32443a257785f9f5673c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Head
-    second: {fileID: 2100000, guid: e4e10100038fec540be2793f2bc4e378, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Mouth
-    second: {fileID: 2100000, guid: 8c132904b6424e64e8a4b71cc429b713, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MouthDeep
-    second: {fileID: 2100000, guid: 9f2c4ca64656ad147ba43369bbb83d15, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Nose
-    second: {fileID: 2100000, guid: cd11198c15580c04da2d8dc206786ab3, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

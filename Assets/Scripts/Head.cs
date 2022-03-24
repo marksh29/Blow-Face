@@ -5,17 +5,76 @@ using UnityEngine;
 public class Head : MonoBehaviour
 {
     [SerializeField] PlayerControll player;
-    [SerializeField] float emotionTime, addScale;
+    [SerializeField] float emotionTime;
+    [SerializeField] float addScaleSpeed, addShapeSpeed;
     [SerializeField] SkinnedMeshRenderer head;
+    [SerializeField] float curFat;
 
     void Start()
     {
+        curFat = 0;
         emotionTime = player.GetComponent<PlayerControll>().emotionTime;
-        //addScale = player.GetComponent<PlayerControll>().addScale;
+        addScaleSpeed = player.GetComponent<PlayerControll>().addScaleSpeed;
+        addShapeSpeed = player.GetComponent<PlayerControll>().addShapeSpeed;
+        MeshChange();
     }
     void Update()
     {
-       
+        if(curFat > 0)
+        {
+            if (head.GetBlendShapeWeight(3) > 0)
+            {
+                transform.localPosition = new Vector3(0, 0.9f - (0.003f * (float)head.GetBlendShapeWeight(3)), 0);
+                head.SetBlendShapeWeight(3, head.GetBlendShapeWeight(3) - addScaleSpeed);
+                MeshChange();
+            }
+            else
+            {
+                if (head.GetBlendShapeWeight(0) < curFat)
+                {
+                    transform.localPosition = new Vector3(0, 0.9f, 0);
+                    head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) + addScaleSpeed);
+                    MeshChange();
+                }
+                else if (head.GetBlendShapeWeight(0) > curFat)
+                {
+                    transform.localPosition = new Vector3(0, 0.9f, 0);
+                    head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) - addScaleSpeed);
+                    MeshChange();
+                }
+            }               
+        }
+        else
+        {
+            if (head.GetBlendShapeWeight(0) > 0)
+            {
+                transform.localPosition = new Vector3(0, 0.9f, 0);
+                head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) - addScaleSpeed);
+                MeshChange();
+            }
+            else
+            {
+                if (head.GetBlendShapeWeight(3) < (curFat * -1))
+                {
+                    transform.localPosition = new Vector3(0, 0.9f - (0.003f * (float)head.GetBlendShapeWeight(3)), 0);
+                    head.SetBlendShapeWeight(3, head.GetBlendShapeWeight(3) + addScaleSpeed);
+                    MeshChange();
+                }
+                else if (head.GetBlendShapeWeight(3) > (curFat * -1))
+                {
+                    transform.localPosition = new Vector3(0, 0.9f - (0.003f * (float)head.GetBlendShapeWeight(3)), 0);
+                    head.SetBlendShapeWeight(3, head.GetBlendShapeWeight(3) - addScaleSpeed);
+                    MeshChange();
+                }
+            }            
+        }        
+    }
+    void MeshChange()
+    {
+        Mesh bakeMesh = new Mesh();
+        head.BakeMesh(bakeMesh);
+        var collider = GetComponent<MeshCollider>();
+        collider.sharedMesh = bakeMesh;
     }
     public void OnTriggerEnter(Collider coll)
     {
@@ -26,15 +85,25 @@ public class Head : MonoBehaviour
         }
         if (coll.gameObject.tag == "Good")
         {
-            addScale = coll.gameObject.GetComponent<AddScale>().addScale;
+            curFat += coll.gameObject.GetComponent<AddScale>().addScale;
+            if (curFat > 100)
+                curFat = 100;
+
             Emotion(coll.gameObject.tag);
             coll.gameObject.SetActive(false);
         }
         if (coll.gameObject.tag == "Bad")
         {
-            addScale = coll.gameObject.GetComponent<AddScale>().addScale;
+            curFat += coll.gameObject.GetComponent<AddScale>().addScale;
+            if (curFat < -100)
+                curFat = -100;
+
             Emotion(coll.gameObject.tag);
             coll.gameObject.SetActive(false);
+        }
+        if (coll.gameObject.tag == "Finish")
+        {
+            player.Win();
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -61,20 +130,21 @@ public class Head : MonoBehaviour
     }
     IEnumerator GoodEmotion()
     {
-        head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) + addScale);
-        if (head.GetBlendShapeWeight(0) < 0)
-            head.SetBlendShapeWeight(0, 0);
-        GetComponent<CapsuleCollider>().radius = 1f - (0.4f / head.GetBlendShapeWeight(0));
+        //head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) + addScale);
+        //if (head.GetBlendShapeWeight(0) < 0)
+        //    head.SetBlendShapeWeight(0, 0);
+        //GetComponent<CapsuleCollider>().radius = 1f - (0.4f / head.GetBlendShapeWeight(0));
+
         head.SetBlendShapeWeight(2, 100);
         yield return new WaitForSeconds(emotionTime);
         head.SetBlendShapeWeight(2, 0);
     }
     IEnumerator BadEmotion()
     {
-        head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) + addScale);
-        if (head.GetBlendShapeWeight(0) > 100)
-            head.SetBlendShapeWeight(0, 100);
-        GetComponent<CapsuleCollider>().radius = 1f - (0.4f / head.GetBlendShapeWeight(0));
+        //head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) + addScale);      
+        //if (head.GetBlendShapeWeight(0) > 100)
+        //    head.SetBlendShapeWeight(0, 100);
+        //GetComponent<CapsuleCollider>().radius = 1f - (0.4f / head.GetBlendShapeWeight(0));
         head.SetBlendShapeWeight(1, 100);
         yield return new WaitForSeconds(emotionTime);
         head.SetBlendShapeWeight(1, 0);

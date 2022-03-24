@@ -7,8 +7,8 @@ public class PlayerControll : MonoBehaviour
 {
     [Header("--------Options--------")]
     [SerializeField] float moveSpeed;
-    public float boostSpeed, slowSpeed, boostTime, speedRight, emotionTime, addScale;
-    public float headForwardRoatete, headRightRotate;
+    public float boostSpeed, slowSpeed, boostTime, speedRight, emotionTime, addScaleSpeed, addShapeSpeed;
+    public float headForwardRoatete;
     [Header("--------Game--------")]
     [SerializeField] PathFollower path;
     [SerializeField] float speed; 
@@ -21,13 +21,12 @@ public class PlayerControll : MonoBehaviour
     void Start()
     {
         path.speed = moveSpeed;
-        //speed = moveSpeed;
     }
     void FixedUpdate()
     {
         if (Controll.Instance._state == "Game")
         {
-            transform.GetChild(0).Rotate(Vector3.right * headRightRotate);
+            head.transform.Rotate(Vector3.right * headForwardRoatete);
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -43,13 +42,11 @@ public class PlayerControll : MonoBehaviour
                 {
                     head.GetComponent<Rigidbody>().velocity = new Vector3(0, head.GetComponent<Rigidbody>().velocity.y, 0);
                     transform.GetChild(0).transform.Translate(-Vector3.right * speedRight * Time.deltaTime);
-                    //head.transform.Rotate(Vector3.up * headRightRotate);
                 }
                 else if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f) // swip right
                 {
                     head.GetComponent<Rigidbody>().velocity = new Vector3(0, head.GetComponent<Rigidbody>().velocity.y, 0);
                     transform.GetChild(0).transform.Translate(Vector3.right * speedRight * Time.deltaTime);
-                    //head.transform.Rotate(Vector3.up * headRightRotate);
                 }                    
                 firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             }            
@@ -73,6 +70,13 @@ public class PlayerControll : MonoBehaviour
     public void Lose()
     {
         path.speed = 0;
+        headForwardRoatete = 0;
         StartCoroutine(Controll.Instance.Lose());
+    }
+    public void Win()
+    {
+        path.speed = 0;
+        headForwardRoatete = 0;
+        StartCoroutine(Controll.Instance.Win());
     }
 }
