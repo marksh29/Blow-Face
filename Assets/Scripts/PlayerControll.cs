@@ -40,12 +40,12 @@ public class PlayerControll : MonoBehaviour
 
                 if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f) // swip left
                 {
-                    head.GetComponent<Rigidbody>().velocity = new Vector3(0, head.GetComponent<Rigidbody>().velocity.y, 0);
+                    transform.GetChild(0).GetComponent<Rigidbody>().velocity = new Vector3(0, head.GetComponent<Rigidbody>().velocity.y, 0);
                     transform.GetChild(0).transform.Translate(-Vector3.right * speedRight * Time.deltaTime);
                 }
                 else if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f) // swip right
                 {
-                    head.GetComponent<Rigidbody>().velocity = new Vector3(0, head.GetComponent<Rigidbody>().velocity.y, 0);
+                    transform.GetChild(0).GetComponent<Rigidbody>().velocity = new Vector3(0, head.GetComponent<Rigidbody>().velocity.y, 0);
                     transform.GetChild(0).transform.Translate(Vector3.right * speedRight * Time.deltaTime);
                 }                    
                 firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
