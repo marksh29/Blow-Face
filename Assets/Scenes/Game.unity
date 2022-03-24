@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cbd04d254637a1459bdf2e03d4bb9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addScale: 20
+  addScale: 50
 --- !u!65 &7800798
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1043,7 +1043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cbd04d254637a1459bdf2e03d4bb9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addScale: -20
+  addScale: -50
 --- !u!1 &146723982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,7 +1403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cbd04d254637a1459bdf2e03d4bb9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addScale: 10
+  addScale: 40
 --- !u!65 &173741997
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2108,7 +2108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cbd04d254637a1459bdf2e03d4bb9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addScale: 10
+  addScale: 40
 --- !u!1 &331080486
 GameObject:
   m_ObjectHideFlags: 0
@@ -2274,7 +2274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cbd04d254637a1459bdf2e03d4bb9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addScale: -10
+  addScale: -20
 --- !u!65 &333297565
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6665,7 +6665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cbd04d254637a1459bdf2e03d4bb9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addScale: -10
+  addScale: -40
 --- !u!65 &1202007709
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7167,7 +7167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cbd04d254637a1459bdf2e03d4bb9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addScale: -10
+  addScale: -40
 --- !u!65 &1280552983
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7271,7 +7271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cbd04d254637a1459bdf2e03d4bb9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addScale: -10
+  addScale: -40
 --- !u!65 &1301307272
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8467,7 +8467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cbd04d254637a1459bdf2e03d4bb9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addScale: -10
+  addScale: -20
 --- !u!65 &1536653504
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10354,7 +10354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cbd04d254637a1459bdf2e03d4bb9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addScale: 10
+  addScale: 40
 --- !u!65 &1849498529
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11080,7 +11080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cbd04d254637a1459bdf2e03d4bb9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addScale: -10
+  addScale: -40
 --- !u!65 &1946518813
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11715,7 +11715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cbd04d254637a1459bdf2e03d4bb9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addScale: 10
+  addScale: 40
 --- !u!65 &2039140408
 BoxCollider:
   m_ObjectHideFlags: 0
