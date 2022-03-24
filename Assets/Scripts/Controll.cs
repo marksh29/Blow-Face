@@ -33,6 +33,7 @@ public class Controll : MonoBehaviour
         switch(_state)
         {          
             case ("Win"):
+
                 break;
             case ("Lose"):
 

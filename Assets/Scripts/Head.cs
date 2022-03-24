@@ -7,8 +7,8 @@ public class Head : MonoBehaviour
     [SerializeField] PlayerControll player;
     [SerializeField] float emotionTime;
     [SerializeField] float addScaleSpeed, addShapeSpeed;
-    [SerializeField] SkinnedMeshRenderer head;
-    [SerializeField] float curFat;
+    [SerializeField] SkinnedMeshRenderer head; 
+    [SerializeField] float curFat, force;
 
     void Start()
     {
@@ -20,7 +20,7 @@ public class Head : MonoBehaviour
     }
     void Update()
     {
-        if(curFat > 0)
+        if(curFat > 0 && Controll.Instance._state == "Game")
         {
             if (head.GetBlendShapeWeight(3) > 0)
             {
@@ -101,16 +101,21 @@ public class Head : MonoBehaviour
             Emotion(coll.gameObject.tag);
             coll.gameObject.SetActive(false);
         }
-        if (coll.gameObject.tag == "Finish")
+        if (coll.gameObject.tag == "Finish" && Controll.Instance._state == "Game")
         {
             player.Win();
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.tag == "Enemy" && Controll.Instance._state == "Game")
         {
             player.Lose();
+            Vector3 vect = transform.position - collision.gameObject.transform.position;
+            gameObject.layer = 0;
+            GetComponent<Rigidbody>().useGravity = true;
+            GetComponent<Rigidbody>().AddForce(new Vector3(vect.x, 1, vect.z) * force, ForceMode.Impulse);
+            GetComponent<Head>().enabled = false;
         }
     }
 

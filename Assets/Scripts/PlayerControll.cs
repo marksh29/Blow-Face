@@ -69,14 +69,16 @@ public class PlayerControll : MonoBehaviour
     }
     public void Lose()
     {
+        Controll.Instance.Set_state("Lose");
         path.speed = 0;
         headForwardRoatete = 0;
-        StartCoroutine(Controll.Instance.Lose());
+        head = null;        
     }
     public void Win()
     {
+        Controll.Instance.Set_state("Win");
         path.speed = 0;
         headForwardRoatete = 0;
-        StartCoroutine(Controll.Instance.Win());
+        head = null;
     }
 }
