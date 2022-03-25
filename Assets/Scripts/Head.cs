@@ -11,9 +11,11 @@ public class Head : MonoBehaviour
     [SerializeField] float curFat, force;
     [SerializeField] Material[] materials;
 
+    [SerializeField] Color32 _color;
     void Start()
     {
         materials = GetComponent<SkinnedMeshRenderer>().materials;
+        _color = new Color32(255, 255, 255, 255);
 
         curFat = 0;
         emotionTime = player.GetComponent<PlayerControll>().emotionTime;
@@ -35,17 +37,16 @@ public class Head : MonoBehaviour
             else
             {
                 if (head.GetBlendShapeWeight(0) < curFat)
-                {
-                    transform.localPosition = new Vector3(0, 0.9f + (0.007f * (float)head.GetBlendShapeWeight(0)), 0);
+                {                    
                     head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) + addShapeSpeed);
                     MeshChange();
                 }
                 else if (head.GetBlendShapeWeight(0) > curFat)
                 {
-                    transform.localPosition = new Vector3(0, 0.9f + (0.007f * (float)head.GetBlendShapeWeight(0)), 0);
                     head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) - addShapeSpeed);
                     MeshChange();
                 }
+                transform.localPosition = new Vector3(0, 0.9f + (0.007f * (float)head.GetBlendShapeWeight(0)), 0);               
             }               
         }
         else
@@ -58,20 +59,21 @@ public class Head : MonoBehaviour
             }
             else
             {
-                if (head.GetBlendShapeWeight(3) < (curFat * -1))
-                {                   
-                    transform.localPosition = new Vector3(0, 0.9f - (0.003f * (float)head.GetBlendShapeWeight(3)), 0);
+                if (head.GetBlendShapeWeight(3) < -curFat)
+                {                  
                     head.SetBlendShapeWeight(3, head.GetBlendShapeWeight(3) + addShapeSpeed);
                     MeshChange();
                 }
-                else if (head.GetBlendShapeWeight(3) > (curFat * -1))
+                else if (head.GetBlendShapeWeight(3) > -curFat)
                 {
-                    transform.localPosition = new Vector3(0, 0.9f - (0.003f * (float)head.GetBlendShapeWeight(3)), 0);
                     head.SetBlendShapeWeight(3, head.GetBlendShapeWeight(3) - addShapeSpeed);
                     MeshChange();
-                }
+                }                
+                transform.localPosition = new Vector3(0, 0.9f - (0.003f * (float)head.GetBlendShapeWeight(3)), 0);
+                             
             }            
-        }        
+        }
+        _color = new Color32(((byte)(2.5f * (float)head.GetBlendShapeWeight(0))), ((byte)(2.5f * (float)head.GetBlendShapeWeight(3))), ((byte)(2.5f * (float)head.GetBlendShapeWeight(3))), 255);
     }
     void MeshChange()
     {
@@ -95,7 +97,7 @@ public class Head : MonoBehaviour
                 if (curFat > 100)
                     curFat = 100;
 
-                Emotion(coll.gameObject.tag);
+                //Emotion(coll.gameObject.tag);
                 coll.gameObject.SetActive(false);
             }
             if (coll.gameObject.tag == "Bad")
@@ -104,7 +106,7 @@ public class Head : MonoBehaviour
                 if (curFat < -100)
                     curFat = -100;
 
-                Emotion(coll.gameObject.tag);
+                //Emotion(coll.gameObject.tag);
                 coll.gameObject.SetActive(false);
             }
             if (coll.gameObject.tag == "Finish")
@@ -144,40 +146,40 @@ public class Head : MonoBehaviour
         GetComponent<Head>().enabled = false;
     }
 
-    void Emotion(string name)
-    {
-        StopAllCoroutines();
-        head.SetBlendShapeWeight(2, 0);
-        switch (name)
-        {
-            case ("Good"):
-                StartCoroutine(GoodEmotion());
-                break;
-            case ("Bad"):
-                StartCoroutine(BadEmotion());
-                break;
-        }
-    }
-    IEnumerator GoodEmotion()
-    {
-        //head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) + addScale);
-        //if (head.GetBlendShapeWeight(0) < 0)
-        //    head.SetBlendShapeWeight(0, 0);
-        //GetComponent<CapsuleCollider>().radius = 1f - (0.4f / head.GetBlendShapeWeight(0));
+    //void Emotion(string name)
+    //{
+    //    StopAllCoroutines();
+    //    head.SetBlendShapeWeight(2, 0);
+    //    switch (name)
+    //    {
+    //        case ("Good"):
+    //            StartCoroutine(GoodEmotion());
+    //            break;
+    //        case ("Bad"):
+    //            StartCoroutine(BadEmotion());
+    //            break;
+    //    }
+    //}
+    //IEnumerator GoodEmotion()
+    //{
+    //    //head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) + addScale);
+    //    //if (head.GetBlendShapeWeight(0) < 0)
+    //    //    head.SetBlendShapeWeight(0, 0);
+    //    //GetComponent<CapsuleCollider>().radius = 1f - (0.4f / head.GetBlendShapeWeight(0));
 
-        head.SetBlendShapeWeight(2, 100);
-        yield return new WaitForSeconds(emotionTime);
-        head.SetBlendShapeWeight(2, 0);
-    }
-    IEnumerator BadEmotion()
-    {
-        //head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) + addScale);      
-        //if (head.GetBlendShapeWeight(0) > 100)
-        //    head.SetBlendShapeWeight(0, 100);
-        //GetComponent<CapsuleCollider>().radius = 1f - (0.4f / head.GetBlendShapeWeight(0));
-        head.SetBlendShapeWeight(1, 100);
-        yield return new WaitForSeconds(emotionTime);
-        head.SetBlendShapeWeight(1, 0);
+    //    head.SetBlendShapeWeight(2, 100);
+    //    yield return new WaitForSeconds(emotionTime);
+    //    head.SetBlendShapeWeight(2, 0);
+    //}
+    //IEnumerator BadEmotion()
+    //{
+    //    //head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) + addScale);      
+    //    //if (head.GetBlendShapeWeight(0) > 100)
+    //    //    head.SetBlendShapeWeight(0, 100);
+    //    //GetComponent<CapsuleCollider>().radius = 1f - (0.4f / head.GetBlendShapeWeight(0));
+    //    head.SetBlendShapeWeight(1, 100);
+    //    yield return new WaitForSeconds(emotionTime);
+    //    head.SetBlendShapeWeight(1, 0);
 
-    }    
+    //}    
 }
