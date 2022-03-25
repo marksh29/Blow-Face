@@ -127,6 +127,7 @@ public class Head : MonoBehaviour
             if (coll.gameObject.tag == "Finish")
             {
                 player.Win();
+                coll.gameObject.transform.GetChild(0).gameObject.SetActive(true);
             }
             if (coll.gameObject.tag == "WallExit")
             {
