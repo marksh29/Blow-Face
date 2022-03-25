@@ -146,7 +146,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.itkomplex.boatminer
+    Android: com.itkomplex.BlowFace
     Standalone: com.itkomplex.BlowFace
   buildNumber:
     Standalone: 0
@@ -239,8 +239,8 @@ PlayerSettings:
   AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{dedicated}: BoatMiner/boat.keystore'
-  AndroidKeyaliasName: boatminer-985hg
+  AndroidKeystoreName: '{dedicated}: Blow Face/BlowFace.keystore'
+  AndroidKeyaliasName: blowface
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1

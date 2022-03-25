@@ -5,7 +5,7 @@ using UnityEngine;
 public class Wall : MonoBehaviour
 {
     [SerializeField] Rigidbody[] obj;
-    [SerializeField] float force;
+    [SerializeField] float force, xx, yy, zz;
     void Start()
     {
         
@@ -16,7 +16,7 @@ public class Wall : MonoBehaviour
         {
             obj[i].useGravity = true;
         }
-        obj[0].AddRelativeForce(new Vector3(1, 1, 0) * force, ForceMode.Impulse);
-        obj[1].AddRelativeForce(new Vector3(-1, 1, 0) * force, ForceMode.Impulse);
+        obj[0].AddRelativeForce(new Vector3(xx, yy, zz) * force, ForceMode.Impulse);
+        obj[1].AddRelativeForce(new Vector3(-xx, yy, zz) * force, ForceMode.Impulse);
     }
 }

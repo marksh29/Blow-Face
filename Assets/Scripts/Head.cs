@@ -24,26 +24,27 @@ public class Head : MonoBehaviour
         glassDestroy = player.GetComponent<PlayerControll>().glassDestroy;
         MeshChange();
     }
-    void Update()
+    void FixedUpdate()
     {
         if (curFat > 0 && Controll.Instance._state == "Game")
         {
             if (head.GetBlendShapeWeight(3) > 0)
             {
                 transform.localPosition = new Vector3(0, 0.9f - (0.003f * (float)head.GetBlendShapeWeight(3)), 0);
-                head.SetBlendShapeWeight(3, head.GetBlendShapeWeight(3) - addShapeSpeed);
+
+                head.SetBlendShapeWeight(3, head.GetBlendShapeWeight(3) - RemoveValue(3));
                 MeshChange();
             }
             else
             {
                 if (head.GetBlendShapeWeight(0) < curFat)
                 {                    
-                    head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) + addShapeSpeed);
+                    head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) + AddValue(0));
                     MeshChange();
                 }
                 else if (head.GetBlendShapeWeight(0) > curFat)
                 {
-                    head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) - addShapeSpeed);
+                    head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) - RemoveValue(0));
                     MeshChange();
                 }
                 transform.localPosition = new Vector3(0, 0.9f + (0.007f * (float)head.GetBlendShapeWeight(0)), 0);               
@@ -54,27 +55,41 @@ public class Head : MonoBehaviour
             if (head.GetBlendShapeWeight(0) > 0)
             {
                 transform.localPosition = new Vector3(0, 0.9f + (0.007f * (float)head.GetBlendShapeWeight(0)), 0);
-                head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) - addShapeSpeed);
+                head.SetBlendShapeWeight(0, head.GetBlendShapeWeight(0) - RemoveValue(0));
                 MeshChange();
             }
             else
             {
                 if (head.GetBlendShapeWeight(3) < -curFat)
                 {                  
-                    head.SetBlendShapeWeight(3, head.GetBlendShapeWeight(3) + addShapeSpeed);
+                    head.SetBlendShapeWeight(3, head.GetBlendShapeWeight(3) + AddValue(3));
                     MeshChange();
                 }
                 else if (head.GetBlendShapeWeight(3) > -curFat)
                 {
-                    head.SetBlendShapeWeight(3, head.GetBlendShapeWeight(3) - addShapeSpeed);
+                    head.SetBlendShapeWeight(3, head.GetBlendShapeWeight(3) - RemoveValue(3));
                     MeshChange();
                 }                
                 transform.localPosition = new Vector3(0, 0.9f - (0.003f * (float)head.GetBlendShapeWeight(3)), 0);
                              
             }            
         }
-        _color = new Color32(((byte)(2.5f * (float)head.GetBlendShapeWeight(0))), ((byte)(2.5f * (float)head.GetBlendShapeWeight(3))), ((byte)(2.5f * (float)head.GetBlendShapeWeight(3))), 255);
+        //_color = new Color32(((byte)(2.5f * (float)head.GetBlendShapeWeight(0))), ((byte)(2.5f * (float)head.GetBlendShapeWeight(3))), ((byte)(2.5f * (float)head.GetBlendShapeWeight(3))), 255);
     }
+    float AddValue(int id)
+    {
+        float count = new float();
+        count = head.GetBlendShapeWeight(id) + addShapeSpeed > 100 ? 100 - head.GetBlendShapeWeight(id) : addShapeSpeed;
+        return count;
+    }
+    float RemoveValue(int id)
+    {
+        float count = new float();
+        count = head.GetBlendShapeWeight(id) - addShapeSpeed < 0 ? head.GetBlendShapeWeight(id) : addShapeSpeed;
+        return count;
+    }
+
+
     void MeshChange()
     {
         Mesh bakeMesh = new Mesh();
@@ -117,6 +132,13 @@ public class Head : MonoBehaviour
             {
                 coll.gameObject.GetComponent<Wall>().DropWall();
             }
+            if (coll.gameObject.tag == "Glass")
+            {
+                if (curFat >= glassDestroy)
+                    coll.gameObject.GetComponent<Glass>().EffectOn();
+                else
+                    Lose(coll.gameObject);
+            }
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -126,14 +148,7 @@ public class Head : MonoBehaviour
             if (collision.gameObject.tag == "Enemy")
             {
                 Lose(collision.gameObject);
-            }
-            if (collision.gameObject.tag == "Glass")
-            {
-                if(curFat >= glassDestroy)
-                    collision.gameObject.GetComponent<Glass>().EffectOn();
-                else
-                    Lose(collision.gameObject);
-            }
+            }            
         }       
     }
     void Lose(GameObject obj)
