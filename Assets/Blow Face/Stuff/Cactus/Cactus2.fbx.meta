@@ -1,34 +1,9 @@
 fileFormatVersion: 2
-guid: f40e1f5857fc77242a0c9512201559d9
+guid: f4484d5fc047f7d4ba37bd07c308984b
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Cactus 1
-    second: {fileID: 2100000, guid: 14e14f431ca607245a03f231ea0834e8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Cactus 2
-    second: {fileID: 2100000, guid: 5fcb6e4a28a488d458fff73b396499fa, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Cactus 3
-    second: {fileID: 2100000, guid: 8bb4d986df913b34abef2f3dc1de0b96, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pot
-    second: {fileID: 2100000, guid: 2e4c0b7ee5f8134439981e938d893368, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pot 2
-    second: {fileID: 2100000, guid: 6e8f7f3f5ea0a834299202286729f8de, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

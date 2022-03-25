@@ -8,7 +8,7 @@ public class PlayerControll : MonoBehaviour
     [Header("--------Options--------")]
     [SerializeField] float moveSpeed;
     public float boostSpeed, slowSpeed, boostTime, speedRight, emotionTime, addScaleSpeed, addShapeSpeed;
-    public float headForwardRoatete;
+    public float headForwardRoatete, glassDestroy;
     [Header("--------Game--------")]
     [SerializeField] PathFollower path;
     [SerializeField] float speed; 
@@ -40,12 +40,12 @@ public class PlayerControll : MonoBehaviour
 
                 if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f) // swip left
                 {
-                    transform.GetChild(0).GetComponent<Rigidbody>().velocity = new Vector3(0, head.GetComponent<Rigidbody>().velocity.y, 0);
+                    head.GetComponent<Rigidbody>().velocity = new Vector3(0, head.GetComponent<Rigidbody>().velocity.y, 0);
                     transform.GetChild(0).transform.Translate(-Vector3.right * speedRight * Time.deltaTime);
                 }
                 else if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f) // swip right
                 {
-                    transform.GetChild(0).GetComponent<Rigidbody>().velocity = new Vector3(0, head.GetComponent<Rigidbody>().velocity.y, 0);
+                    head.GetComponent<Rigidbody>().velocity = new Vector3(0, head.GetComponent<Rigidbody>().velocity.y, 0);
                     transform.GetChild(0).transform.Translate(Vector3.right * speedRight * Time.deltaTime);
                 }                    
                 firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);

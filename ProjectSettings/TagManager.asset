@@ -8,6 +8,8 @@ TagManager:
   - Good
   - Bad
   - Enemy
+  - Glass
+  - WallExit
   layers:
   - Default
   - TransparentFX
