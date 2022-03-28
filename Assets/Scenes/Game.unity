@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 1
     smallestHole: 0.2
     backfaceThreshold: 100
-  m_SceneGUID: 621771edc05a1a8458fdc506ca3bb012
-  m_OcclusionCullingData: {fileID: 36300000, guid: 223e491c72f268b4d94eeafcdad7e099, type: 2}
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.14366671, g: 0.78734446, b: 0.6683892, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1219,7 +1219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &269167177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4604,7 +4604,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1240209277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8895,7 +8895,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 950}
+  m_AnchoredPosition: {x: 0, y: 233}
   m_SizeDelta: {x: 1367.157, y: 573.139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1450880236191598099
@@ -9825,8 +9825,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.45
-  far clip plane: 3000
-  field of view: 45
+  far clip plane: 3001.68
+  field of view: 40
   orthographic: 0
   orthographic size: 50
   m_Depth: -1
@@ -9851,8 +9851,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3773659483201371059}
-  m_LocalRotation: {x: 0.20474704, y: 0.0000000084209315, z: -0.0000000017614779, w: 0.97881496}
-  m_LocalPosition: {x: 0.21, y: 9.005, z: -17.47}
+  m_LocalRotation: {x: 0.11315653, y: 0.00000001815577, z: -0.0000000020677247, w: 0.9935772}
+  m_LocalPosition: {x: 0.21, y: 5.005, z: -14.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
