@@ -8,7 +8,8 @@ public class PlayerControll : MonoBehaviour
     [Header("--------Options--------")]
     [SerializeField] float moveSpeed;
     public float boostSpeed, slowSpeed, boostTime, speedRight, emotionTime, addScaleSpeed, addShapeSpeed;
-    public float headForwardRoatete, glassDestroy;
+    public float headForwardRoatete, glassDestroy, moveLimit;
+
     [Header("--------Game--------")]
     [SerializeField] PathFollower path;
     [SerializeField] float speed; 
@@ -20,6 +21,7 @@ public class PlayerControll : MonoBehaviour
 
     void Start()
     {
+        moveLimit = moveLimit == 0 ? 3.5f : moveLimit;
         path.speed = moveSpeed;
     }
     void FixedUpdate()
@@ -40,13 +42,15 @@ public class PlayerControll : MonoBehaviour
 
                 if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f) // swip left
                 {
-                    head.GetComponent<Rigidbody>().velocity = new Vector3(0, head.GetComponent<Rigidbody>().velocity.y, 0);
-                    transform.GetChild(0).transform.Translate(-Vector3.right * speedRight * Time.deltaTime);
+                    //head.GetComponent<Rigidbody>().velocity = new Vector3(0, head.GetComponent<Rigidbody>().velocity.y, 0);
+                    if(transform.GetChild(0).transform.localPosition.x > -moveLimit)
+                        transform.GetChild(0).transform.Translate(-Vector3.right * speedRight * Time.deltaTime);
                 }
                 else if (currentSwipe.x > 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f) // swip right
                 {
-                    head.GetComponent<Rigidbody>().velocity = new Vector3(0, head.GetComponent<Rigidbody>().velocity.y, 0);
-                    transform.GetChild(0).transform.Translate(Vector3.right * speedRight * Time.deltaTime);
+                    //head.GetComponent<Rigidbody>().velocity = new Vector3(0, head.GetComponent<Rigidbody>().velocity.y, 0);
+                    if (transform.GetChild(0).transform.localPosition.x < moveLimit)
+                        transform.GetChild(0).transform.Translate(Vector3.right * speedRight * Time.deltaTime);
                 }                    
                 firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             }            

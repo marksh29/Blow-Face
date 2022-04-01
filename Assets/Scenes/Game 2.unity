@@ -12946,6 +12946,7 @@ MonoBehaviour:
   addShapeSpeed: 2
   headForwardRoatete: 10
   glassDestroy: 20
+  moveLimit: 3.5
   path: {fileID: 2035758368}
   speed: 0
   head: {fileID: 1609811250}
